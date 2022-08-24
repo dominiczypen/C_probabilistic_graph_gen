@@ -35,7 +35,9 @@ void lfsr(uint32_t* x32)
                    // 32, 16, 7, 2
   uint32_t tmp = *x32;
   my_bit = (tmp ^ (tmp >> 16) ^ (tmp >> 25) ^ (tmp >> 30)) & 1u;
+      //  (..) & 1u : we are only interested in right-most bit
   tmp = (tmp >> 1) | (my_bit << 31);
+      // right shift tmp and insert new bit at left end
   *x32 = tmp;
 }
 
